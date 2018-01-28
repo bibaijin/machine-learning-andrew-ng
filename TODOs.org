@@ -1,6 +1,7 @@
 * TODOs
   
-** TODO 第 7 周视频
+** DONE 第 7 周视频
+   CLOSED: [2018-01-28 Sun 15:06]
 ** TODO 第 7 周作业
 ** TODO 第 8 周视频
 ** TODO 第 8 周作业
