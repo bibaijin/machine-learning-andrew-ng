@@ -23,11 +23,23 @@ sigma = 0.3;
 %        mean(double(predictions ~= yval))
 %
 
-
-
-
-
-
+C_candidate = [0.01 0.03 0.1 0.3 1 3 10 30]';
+sigma_candidate = [0.01 0.03 0.1 0.3 1 3 10 30]';
+[xx, yy] = meshgrid(C_candidate, sigma_candidate);
+pair = [xx(:) yy(:)];
+error = Inf;
+for i = 1 : size(pair, 1)
+  newC = pair(i, 1);
+  newSigma = pair(i, 2);
+  model = svmTrain(X, y, newC, @(x1, x2) gaussianKernel(x1, x2, newSigma));
+  predictions = svmPredict(model, Xval);
+  newError = mean(double(predictions ~= yval));
+  if newError < error
+    C = newC;
+    sigma = newSigma;
+    error = newError;
+  endif
+endfor
 
 % =========================================================================
 
